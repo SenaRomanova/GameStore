@@ -2,11 +2,8 @@ using System.ComponentModel.DataAnnotations;
 
 namespace GameStore.api.DTOs;
 
-public record class CreateGameDTO
+public record class UpdateGameDTO
 (
-    //int Id -- the id is provided by the server/api itself!
-
-    //to enforce the data annotations, use a nuget package: MinimalApis.Extensions
     [Required][StringLength(50)] string Name,
     [Required][StringLength(20)] string Genre,
     [Required][Range(1, 100)] decimal Price,

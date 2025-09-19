@@ -2,16 +2,30 @@ GET http://localhost:5197/games
 
 ### this is to separate requests
 
-GET http://localhost:5197/games/1
+GET http://localhost:5197/games/8
 
 ###
 POST http://localhost:5197/games
 Content-Type: application/json 
 
 {
-  "name": "Heh",
+  "name": "Hjwbfuibg4 3bhnadjgbvgiu4gi]",
   "genre": "Adventure",
-  "price": 59.99
+  "price": 59.99,
+  "releaseDate": "2023-10-01"
 }
 ### important to leave 1 space after content type
 
+PUT http://localhost:5197/games/2
+Content-Type: application/json 
+
+{
+  "name": "Updated Game!!!",
+  "genre": "Action",
+  "price": 49.99,
+  "releaseDate": "2023-11-01"
+}
+
+###
+
+DELETE http://localhost:5197/games/1
