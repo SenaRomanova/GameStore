@@ -1,0 +1,17 @@
+GET http://localhost:5197/games
+
+### this is to separate requests
+
+GET http://localhost:5197/games/1
+
+###
+POST http://localhost:5197/games
+Content-Type: application/json 
+
+{
+  "name": "Heh",
+  "genre": "Adventure",
+  "price": 59.99
+}
+### important to leave 1 space after content type
+
