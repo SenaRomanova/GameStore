@@ -9,8 +9,8 @@ POST http://localhost:5197/games
 Content-Type: application/json 
 
 {
-  "name": "Hjwbfuibg4 3bhnadjgbvgiu4gi]",
-  "genre": "Adventure",
+  "name": "Advernture Game",
+  "genreId": 1,
   "price": 59.99,
   "releaseDate": "2023-10-01"
 }

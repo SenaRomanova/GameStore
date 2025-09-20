@@ -8,7 +8,7 @@ public record class CreateGameDTO
 
     //to enforce the data annotations, use a nuget package: MinimalApis.Extensions
     [Required][StringLength(50)] string Name,
-    [Required][StringLength(20)] string Genre,
+    [Required] int GenreId,
     [Required][Range(1, 100)] decimal Price,
     DateOnly ReleaseDate
 );

@@ -1,0 +1,32 @@
+using System;
+using GameStore.api.DTOs;
+using GameStore.api.Entities;
+
+namespace GameStore.api.Mapping;
+
+public static class GameMapping
+{//this class is meant to hold mapping logic between entities and DTOs
+
+    public static Game ToEntity(this CreateGameDTO game)
+    {
+        return new Game()
+        {
+            Name = game.Name,
+            GenreId = game.GenreId,
+            Price = game.Price,
+            ReleaseDate = game.ReleaseDate
+        };
+    }
+
+
+    public static GameDTO ToDTO(this Game game)
+    {
+        return new GameDTO(
+            game.Id,
+            game.Name,
+            game.Genre!.Name,
+            game.Price,
+            game.ReleaseDate
+        );
+    }
+}

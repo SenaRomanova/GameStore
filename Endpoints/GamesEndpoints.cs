@@ -1,5 +1,8 @@
 using System;
+using GameStore.api.Data;
 using GameStore.api.DTOs;
+using GameStore.api.Entities;
+using GameStore.api.Mapping;
 
 namespace GameStore.api.Endpoints;
 
@@ -39,20 +42,15 @@ public static class GamesEndpoints
 
         //creation of a resource
         //new endpoit is POST /games
-        group.MapPost("/", (CreateGameDTO newGame) =>
+        group.MapPost("/", (CreateGameDTO newGame, GameStoreDbContext dbContext) =>
         {
 
-
-            GameDTO game = new(
-                Id: games.Count + 1,
-                newGame.Name,
-                newGame.Genre,
-                newGame.Price,
-                newGame.ReleaseDate
-                );
-
-            games.Add(game);
-            return Results.CreatedAtRoute(GetGameEndpointName, new { id = game.Id }, game); //returns 201 Created response with a Location header pointing to the newly created resource
+            Game game = newGame.ToEntity();
+            game.Genre = dbContext.Genres.Find(newGame.GenreId) ?? throw new Exception("Genre not found");
+            dbContext.Games.Add(game);
+            dbContext.SaveChanges(); //saves changes to the database, including generating the Id for the new game
+            
+            return Results.CreatedAtRoute(GetGameEndpointName, new { id = game.Id }, game.ToDTO()); //returns 201 Created response with a Location header pointing to the newly created resource
         });
         //.WithParameterValidation(); //installed provided by nuget package - MinimalApis.Extensions, to enforce the data annotations in CreateGameDTO.
 
